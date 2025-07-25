@@ -34,3 +34,24 @@ def mindSweeper(n, k):
                 grid[nx][ny] += 1
     return grid
 
+def generatePlayerGrid(n):
+    return [[UNOPENED for _ in range(n)] for _ in range(n)]
+
+def checkWinCondition(mind, player):
+    for i in range(len(mind)):
+        for j in range(len(mind)):
+            if mind[i][j] != BOMB and player[i][j] == UNOPENED:
+                return False
+    return True
+
+def checkContinue(score):
+    print_color(f"\nYour Score: {score}", "1;31")
+    print_color("Do you want to play again?", "1;36")
+    print("1. YES")
+    print("0. NO")
+    choice = input("Enter choice: ").strip()
+    if choice == '1':
+        return True
+    else:
+        print_color("Thanks for playing! 👋", "1;32")
+        return False
